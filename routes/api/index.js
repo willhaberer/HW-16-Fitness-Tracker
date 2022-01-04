@@ -25,10 +25,6 @@ router.post("/workouts", async (req, res) => {
   }
 });
 
-router.delete("/workouts", async (req, res) => {
-  console.log("will delete workouts  late");
-});
-
 router.put("/workouts/:id", async (req, res) => {
   try {
     const newWorkout = await workout.findByIdAndUpdate(

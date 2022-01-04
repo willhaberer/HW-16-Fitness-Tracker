@@ -12,16 +12,16 @@ const workoutSchema = new Schema({
         type: String,
       },
       distance: {
-        type: String,
+        type: Number,
       },
       duration: {
-        type: String,
+        type: Number,
       },
       weight: {
-        type: String,
+        type: Number,
       },
       sets: {
-        type: String,
+        type: Number,
       },
     },
   ],
