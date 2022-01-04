@@ -25,26 +25,24 @@ router.post("/workouts", async (req, res) => {
   }
 });
 
-router.delete("/workouts", (req, res) => {
+router.delete("/workouts", async (req, res) => {
   console.log("will delete workouts  late");
 });
 
-router.put("/api/workouts:id", (req, res) => {
-  workout.updateOne(
-    {
-      _id: mongojs.ObjectId(req.params.id),
-    },
-    {
-      $set: { exercises: req.body },
-    },
-    (err, workoutData) => {
-      if (err) {
-        console.log(err);
-      }
-
-      res.json(workoutData);
-    }
-  );
+router.put("/workouts/:id", async (req, res) => {
+  try {
+    const newWorkout = await workout.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: { exercises: req.body },
+      },
+      { new: true }
+    );
+    console, log(newWorkout);
+    res.json(newWorkout);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
