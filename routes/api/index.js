@@ -25,4 +25,8 @@ router.post("/workouts", async (req, res) => {
   }
 });
 
+router.delete("/workouts", (req, res) => {
+  console.log("will delete workouts  late");
+});
+
 module.exports = router;
