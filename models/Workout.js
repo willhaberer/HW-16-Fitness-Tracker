@@ -25,6 +25,7 @@ const workoutSchema = new Schema({
       },
     },
   ],
+  //need something for day
 });
 
 const Workout = mongoose.model("Workout", workoutSchema);
