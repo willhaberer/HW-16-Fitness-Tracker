@@ -15,6 +15,14 @@ router.get("/api/workouts", async (req, res) => {
 });
 
 //create new workout
-routes.post("/workouts", async (req, res) => {});
+router.post("/workouts", async (req, res) => {
+  try {
+    const workout = await workout.create({});
+    console.log(workout);
+    res.json(workout);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
