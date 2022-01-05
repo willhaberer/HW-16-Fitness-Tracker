@@ -22,19 +22,18 @@ router.get("/workouts", async (req, res) => {
 
 router.get("/workouts/range", async (req, res) => {
   try {
-    const workoutDuration = await workout
-      .aggregate([
-        {
-          $addFields: {
-            totalDuration: {
-              $sum: "$exercises.duration",
-            },
+    const duration = await Workout.aggregate([
+      {
+        $addFields: {
+          totalDuration: {
+            $sum: "$exercises.duration",
           },
         },
-      ])
+      },
+    ])
       .sort({ _id: -1 })
       .limit(7);
-    res.json(workoutDuration);
+    res.json(duration);
   } catch (err) {
     console.log(err);
   }
