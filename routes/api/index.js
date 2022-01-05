@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Workout } = require("../../models");
+const { Workout, Exercise } = require("../../models");
 
 //get all workouts
 router.get("/workouts", async (req, res) => {
@@ -42,8 +42,8 @@ router.get("/workouts/range", async (req, res) => {
 //create new workout
 router.post("/workouts", async (req, res) => {
   try {
-    const workout = await Workout.create({});
-    res.json(workout);
+    const newWorkout = await Workout.create({});
+    res.json(newWorkout);
   } catch (err) {
     console.log(err);
   }
