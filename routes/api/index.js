@@ -41,14 +41,12 @@ router.get("/workouts/range", async (req, res) => {
 
 //create new workout
 router.post("/workouts", async (req, res) => {
-  workout
-    .create(req.body)
-    .then((workout) => {
-      res.json(workout);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+  try {
+    const workout = await Workout.create({});
+    res.json(workout);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.put("/workouts/:id", async (req, res) => {
