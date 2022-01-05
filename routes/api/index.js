@@ -51,15 +51,15 @@ router.post("/workouts", async (req, res) => {
 
 router.put("/workouts/:id", async (req, res) => {
   try {
-    const newWorkout = await workout.findByIdAndUpdate(
+    const updatedWorkout = await Workout.findByIdAndUpdate(
       req.params.id,
       {
         $push: { exercises: req.body },
       },
       { new: true }
     );
-    console.log(newWorkout);
-    res.json(newWorkout);
+    console.log(updatedWorkout);
+    res.json(updatedWorkout);
   } catch (err) {
     console.log(err);
   }
