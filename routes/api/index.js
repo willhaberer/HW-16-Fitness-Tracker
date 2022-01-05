@@ -3,33 +3,21 @@ const { Workout } = require("../../models");
 
 //get all workouts
 router.get("/workouts", async (req, res) => {
-  if (workout.type === "cardio") {
-    workout.aggregate([
+  try {
+    const duration = await Workout.aggregate([
       {
         $addFields: {
-          totalDistance: { $sum: "$exercises.distance" },
+          totalDuration: {
+            $sum: "$exercises.duration",
+          },
         },
       },
     ]);
+    console.log(duration);
+    res.json(duration);
+  } catch (err) {
+    console.log(err);
   }
-
-  workout.aggregate([
-    {
-      $addFields: {
-        totalWeight: { $sum: "$exercises.weight" },
-      },
-    },
-  ]);
-
-  workout
-    .find()
-    .then((data) => {
-      console.log(data);
-      res.json(data);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
 });
 
 router.get("/workouts/range", async (req, res) => {
