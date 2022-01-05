@@ -10,9 +10,6 @@ router.get("/workouts", async (req, res) => {
           totalDuration: {
             $sum: "$exercises.duration",
           },
-          totalReps: {
-            $sum: "$exercises.reps",
-          },
         },
       },
     ]);
