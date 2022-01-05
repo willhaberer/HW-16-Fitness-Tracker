@@ -16,7 +16,14 @@ router.get("/workouts", async (req, res) => {
 
 router.get("/workouts/range", (req, res) => {
   workout
-    .find({})
+    .aggregate([
+      {
+        $addFields: { totalDuration: { $sum: "$exercises.duration" } },
+      },
+    ])
+    .limit(7)
+    .sort({ day: -1 })
+
     .then((workout) => {
       res.json(workout);
     })
@@ -27,13 +34,14 @@ router.get("/workouts/range", (req, res) => {
 
 //create new workout
 router.post("/workouts", async (req, res) => {
-  try {
-    const workout = await workout.create({});
-    console.log(workout);
-    res.json(workout);
-  } catch (err) {
-    console.log(err);
-  }
+  workout
+    .create(req.body)
+    .then((workout) => {
+      res.json(workout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 router.put("/workouts/:id", async (req, res) => {
