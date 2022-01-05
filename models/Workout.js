@@ -28,6 +28,7 @@ const workoutSchema = new Schema({
   //need something for day
   day: {
     type: Date,
+    default: () => new Date(),
   },
 });
 

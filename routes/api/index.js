@@ -53,7 +53,7 @@ router.put("/workouts/:id", async (req, res) => {
       },
       { new: true }
     );
-    console, log(newWorkout);
+    console.log(newWorkout);
     res.json(newWorkout);
   } catch (err) {
     console.log(err);
