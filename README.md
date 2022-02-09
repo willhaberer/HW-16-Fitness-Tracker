@@ -10,7 +10,7 @@ No installation necessary unless you plan to make changes to the code on your lo
 
 ## Usage
 
-To use this application you can vist the link provided here: https://hw16-fitness-tracker.herokuapp.com/?id=61d4efe2e2da950016dcb0cd
+This application is no longer available 
 
 ## Contributing
 
